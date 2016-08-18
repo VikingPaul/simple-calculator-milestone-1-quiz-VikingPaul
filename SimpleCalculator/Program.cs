@@ -10,6 +10,8 @@ namespace SimpleCalculator
     {
         static void Main(string[] args)
         {
+            Dictionary<string, string> vars = new Dictionary<string, string>();
+            vars.Add("win", "lose");
             Stack GetSetLast = new Stack();
             bool playProgram = true;
             int numOfExpressions = 0;
@@ -46,17 +48,22 @@ namespace SimpleCalculator
                         Console.WriteLine(whiteSpace + GetSetLast.LastQuestion);
                         break;
                     default:
-                        string[] trueExpression = new Expression(newCommand).getArray();
-                        if (trueExpression[0] == "false")
-                        {
-                            Console.WriteLine(whiteSpace + "Invalid");
-                        }
-                        else
+                        string[] trueExpression = new Expression(newCommand, vars).getArray();
+                        if (trueExpression[0] == "true")
                         {
                             int ans = new Maths(int.Parse(trueExpression[1]), trueExpression[2], int.Parse(trueExpression[3])).Answer();
                             GetSetLast.LastAnswer = ans.ToString();
                             GetSetLast.LastQuestion = newCommand;
                             Console.WriteLine(whiteSpace + "=" + ans.ToString());
+                        }
+                        else if (trueExpression[0] == "Var")
+                        {
+                            GetSetLast.LastQuestion = newCommand;
+                            Console.WriteLine(whiteSpace + "Var accepted");
+                        }
+                        else
+                        {
+                            Console.WriteLine(whiteSpace + trueExpression[0]);
                         }
                         break;
                 }

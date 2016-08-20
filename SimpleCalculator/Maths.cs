@@ -25,6 +25,9 @@ namespace SimpleCalculator
                 case "/":
                     answer = first / second;
                     break;
+                case "%":
+                    answer = first % second;
+                    break;
                 default:
                     break;
             }

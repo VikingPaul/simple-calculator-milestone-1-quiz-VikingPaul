@@ -57,7 +57,35 @@ namespace SimpleCalculator.Tests
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
             Expression testObj = new Expression("a-2", dic);
-            Assert.IsTrue(testObj.getArray()[0] == "false");
+            Assert.IsTrue(testObj.getArray()[0] == "Missing Number");
+        }
+        [TestMethod]
+        public void negativeVarTest()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            Expression testObj = new Expression("a=-2", dic);
+            Assert.IsTrue(dic["a"] == "-2");
+        }
+        [TestMethod]
+        public void negativeMathsTest()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            Expression testObj = new Expression("-1+-2", dic);
+            Assert.IsTrue(testObj.getArray()[0] == "true");
+        }
+        [TestMethod]
+        public void divideBy0()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            Expression testObj = new Expression("1/-0", dic);
+            Assert.IsTrue(testObj.getArray()[0] == "Cannot divide by 0");
+        }
+        [TestMethod]
+        public void modulo()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            Expression testObj = new Expression("2%9", dic);
+            Assert.IsTrue(testObj.getArray()[0] == "true");
         }
     }
 }

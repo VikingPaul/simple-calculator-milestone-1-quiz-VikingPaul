@@ -9,10 +9,10 @@ namespace SimpleCalculator
 {
     public class Expression
     {
-        string[] array = new string[] { "false" };
+        string[] array = new string[] { "Error" };
         public Expression(string expression, Dictionary<string, string> vars)
         {
-            string pattern = @"^(\d*|\w)\s?(\+?\-?\/?\*?)\s?(\d*|\w)$";
+            string pattern = @"^(\-?\d*|\w)\s?(\+?\-?\/?\*?\%?)\s?(\-?\d*|\w)$";
             Regex rgx = new Regex(pattern);
             if (rgx.IsMatch(expression))
             {
@@ -34,7 +34,7 @@ namespace SimpleCalculator
                 catch (FormatException)
                 {
 
-                    array[0] = "Error";
+                    array[0] = "Missing Number";
                 }
                 try
                 {
@@ -42,10 +42,14 @@ namespace SimpleCalculator
                 }
                 catch (FormatException)
                 {
-                    array[0] = "Error";
+                    array[0] = "Missing Number(s)";
+                }
+                if ((array[2] == "/" | array[2] == "%") && (array[3] == "0" | array[3] == "-0"))
+                {
+                    array[0] = "Cannot divide by 0";
                 }
             }
-            string addVar = @"^([a-z])\s?\=\s?(\d)$";
+            string addVar = @"^([a-z])\s?\=\s?(\-?\d)$";
             Regex rgx2 = new Regex(addVar);
             if (rgx2.IsMatch(expression))
             {

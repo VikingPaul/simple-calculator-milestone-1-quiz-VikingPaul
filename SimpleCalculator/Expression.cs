@@ -27,22 +27,17 @@ namespace SimpleCalculator
                 {
                     array[3] = vars[array[3]];
                 }
-                try
+                if (Regex.IsMatch(array[1], "[a-z]") | Regex.IsMatch(array[3], "[a-z]"))
                 {
-                    int first = int.Parse(array[1]);
+                    array[0] = "Var not accepted";
                 }
-                catch (FormatException)
+                if (array[1] == "" | array[2] == "" | array[3] == "")
                 {
-
-                    array[0] = "Missing Number";
+                    array[0] = "Not Complete Expression";
                 }
-                try
+                if (array[1] == "-" | array[3] == "-")
                 {
-                    int second = int.Parse(array[3]);
-                }
-                catch (FormatException)
-                {
-                    array[0] = "Missing Number(s)";
+                    array[0] = "Needs a number to be nagative";
                 }
                 if ((array[2] == "/" | array[2] == "%") && (array[3] == "0" | array[3] == "-0"))
                 {

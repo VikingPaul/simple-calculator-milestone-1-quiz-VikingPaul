@@ -57,7 +57,7 @@ namespace SimpleCalculator.Tests
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
             Expression testObj = new Expression("a-2", dic);
-            Assert.IsTrue(testObj.getArray()[0] == "Missing Number");
+            Assert.IsTrue(testObj.getArray()[0] == "Var not accepted");
         }
         [TestMethod]
         public void negativeVarTest()

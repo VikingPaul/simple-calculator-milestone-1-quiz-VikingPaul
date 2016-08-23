@@ -9,10 +9,10 @@ namespace SimpleCalculator
 {
     public class Expression
     {
-        string[] array = new string[] { "Error" };
+        string[] array = new string[] { "Command Not Found" };
         public Expression(string expression, Dictionary<string, string> vars)
         {
-            string pattern = @"^(\-?\d*|\w)\s?(\+?\-?\/?\*?\%?)\s?(\-?\d*|\w)$";
+            string pattern = @"^(\-?\d{0,9}|\w)\s?(\+?\-?\/?\*?\%?)\s?(\-?\d{0,9}|\w)$";
             Regex rgx = new Regex(pattern);
             if (rgx.IsMatch(expression))
             {

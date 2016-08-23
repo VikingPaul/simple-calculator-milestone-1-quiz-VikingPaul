@@ -11,8 +11,9 @@ namespace SimpleCalculator
         static void Main(string[] args)
         {
             Dictionary<string, string> vars = new Dictionary<string, string>();
-            vars.Add("win", "lose");
             Stack GetSetLast = new Stack();
+            GetSetLast.LastAnswer = "No Last Answer";
+            GetSetLast.LastQuestion = "No Last Question";
             bool playProgram = true;
             int numOfExpressions = 0;
             while(playProgram)
